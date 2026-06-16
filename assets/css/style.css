@@ -261,3 +261,93 @@ h1, h2, h3, h4, h5, h6 {
     display: none; /* Mobile menu to be implemented via JS */
   }
 }
+
+/* Favorite Button Styles */
+.listing-card, .card {
+  position: relative;
+}
+
+.favorite-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: all 0.2s ease-in-out;
+  z-index: 5;
+}
+
+.favorite-btn svg {
+  fill: transparent;
+  stroke: #6c757d;
+  stroke-width: 2.5;
+  width: 20px;
+  height: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.1);
+  background: #ffffff;
+}
+
+.favorite-btn:hover svg {
+  stroke: #f72585;
+}
+
+.favorite-btn.active svg {
+  fill: #f72585;
+  stroke: #f72585;
+}
+
+/* Detail Page Favorite Button */
+.detail-fav-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid var(--primary-color);
+  background: var(--white);
+  color: var(--primary-color);
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.detail-fav-btn svg {
+  fill: none;
+  stroke: var(--primary-color);
+  stroke-width: 2.5;
+  width: 20px;
+  height: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.detail-fav-btn:hover {
+  background: var(--background-light);
+}
+
+/* Active State (Saved) */
+.detail-fav-btn.active {
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.detail-fav-btn.active svg {
+  fill: var(--white);
+  stroke: var(--white);
+}
+
+

@@ -5,6 +5,14 @@ require_once 'includes/db.php';
 // Fetch recent approved ads
 $stmt = $pdo->query("SELECT a.*, (SELECT image_path FROM ad_images WHERE ad_id = a.ad_id LIMIT 1) as cover_image FROM advertisements a WHERE status = 'approved' ORDER BY created_at DESC LIMIT 6");
 $recentAds = $stmt->fetchAll();
+
+// Fetch saved ads for currently logged in user (if any)
+$savedAdIds = [];
+if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') {
+    $stmt_saved = $pdo->prepare("SELECT ad_id FROM saved_listings WHERE user_id = ?");
+    $stmt_saved->execute([$_SESSION['user_id']]);
+    $savedAdIds = $stmt_saved->fetchAll(PDO::FETCH_COLUMN);
+}
 ?>
 
 <?php include 'includes/header.php'; ?>
@@ -209,8 +217,15 @@ $recentAds = $stmt->fetchAll();
                 <div class="listing-card">
                     <?php
                     $imgPath = $ad['cover_image'] ? htmlspecialchars($ad['cover_image']) : 'https://via.placeholder.com/400x300?text=No+Image';
+                    $isFavorite = in_array($ad['ad_id'], $savedAdIds);
                     ?>
+                    <button class="favorite-btn <?php echo $isFavorite ? 'active' : ''; ?>" data-id="<?php echo $ad['ad_id']; ?>" onclick="toggleFavorite(event, this)" title="Add to Favorites">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </button>
                     <img src="<?php echo $imgPath; ?>" alt="<?php echo htmlspecialchars($ad['title']); ?>" class="listing-img">
+
                     <div class="listing-content">
                         <div class="listing-price">Rs. <?php echo number_format($ad['price'], 2); ?> / month</div>
                         <h3 class="listing-title"><?php echo htmlspecialchars($ad['title']); ?></h3>

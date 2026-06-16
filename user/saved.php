@@ -39,11 +39,17 @@ $savedAds = $stmt->fetchAll();
         <?php if (count($savedAds) > 0): ?>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
                 <?php foreach ($savedAds as $ad): ?>
-                    <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 0;">
+                    <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 0; position: relative;">
                         <?php
                         $imgPath = $ad['cover_image'] ? '../' . htmlspecialchars($ad['cover_image']) : 'https://via.placeholder.com/400x300?text=No+Image';
                         ?>
+                        <button class="favorite-btn active" data-id="<?php echo $ad['ad_id']; ?>" onclick="toggleFavorite(event, this)" title="Remove from Favorites">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </button>
                         <img src="<?php echo $imgPath; ?>" alt="<?php echo htmlspecialchars($ad['title']); ?>" style="width: 100%; height: 200px; object-fit: cover;">
+
                         <div style="padding: 1.5rem;">
                             <div style="font-size: 1.25rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.5rem;">Rs. <?php echo number_format($ad['price'], 2); ?> / month</div>
                             <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;"><?php echo htmlspecialchars($ad['title']); ?></h3>

@@ -100,6 +100,23 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') {
         <!-- Sidebar / Contact -->
         <div style="flex: 1; min-width: 300px;">
             <div class="card" style="position: sticky; top: 100px;">
+                <!-- Favorite Button -->
+                <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'user'): ?>
+                    <button class="detail-fav-btn <?php echo $is_saved ? 'active' : ''; ?>" data-id="<?php echo $ad['ad_id']; ?>" onclick="toggleFavorite(event, this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span class="btn-text"><?php echo $is_saved ? 'Saved to Favorites' : 'Add to Favorites'; ?></span>
+                    </button>
+                <?php elseif (!isset($_SESSION['user_id'])): ?>
+                    <button class="detail-fav-btn" data-id="<?php echo $ad['ad_id']; ?>" onclick="toggleFavorite(event, this)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span class="btn-text">Add to Favorites</span>
+                    </button>
+                <?php endif; ?>
+
                 <h3 style="margin-bottom: 1.5rem;">Contact Seller</h3>
 
 
