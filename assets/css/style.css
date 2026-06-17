@@ -276,6 +276,8 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
   width: 38px;
   height: 38px;
+  padding: 0;               /* Fix: removes browser-default button padding */
+  min-width: 38px;          /* Fix: prevents shrinking */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -283,6 +285,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   transition: all 0.2s ease-in-out;
   z-index: 5;
+  flex-shrink: 0;
 }
 
 .favorite-btn svg {
