@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div style="margin-bottom: 1.5rem;">
             <h4 style="color: white; margin-bottom: 0.5rem;"> Address</h4>
-            <p style="opacity: 0.9;">Advanced Technological Institute,<br>Dehiwala - SLIATE</p>
+            <p style="opacity: 0.9;">188,Veheragam,Moraketiya Road,Embilipitiya.<br></p>
         </div>
         <div style="margin-bottom: 1.5rem;">
             <h4 style="color: white; margin-bottom: 0.5rem;"> Phone</h4>
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <div style="margin-bottom: 1.5rem;">
             <h4 style="color: white; margin-bottom: 0.5rem;">✉️ Email</h4>
-            <p style="opacity: 0.9;">support@bodimak.lk</p>
+            <p style="opacity: 0.9;">asharaadmin@gmail.com</p>
         </div>
     </div>
 
