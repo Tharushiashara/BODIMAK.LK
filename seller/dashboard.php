@@ -31,7 +31,7 @@ $stats = $stmt->fetch();
     <!-- Main Content -->
     <div style="flex: 3;">
         <h2 style="margin-bottom: 1.5rem;">Seller Overview</h2>
-        
+
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
             <div class="card" style="text-align: center;">
                 <h3 style="font-size: 2.5rem; color: var(--primary-color);"><?php echo $stats['total'] ?? 0; ?></h3>

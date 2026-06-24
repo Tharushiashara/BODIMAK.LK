@@ -1,4 +1,5 @@
 <?php
+// pasubimen data aragenhart kotasa add save or delete SQL command run
 session_start();
 header('Content-Type: application/json');
 require_once 'includes/db.php';
@@ -18,7 +19,7 @@ if (!$ad_id || !is_numeric($ad_id)) {
 
 try {
     $user_id = $_SESSION['user_id'];
-    // Check if already saved
+    //kalin save krlad kyla blnwa
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM saved_listings WHERE user_id = ? AND ad_id = ?");
     $stmt->execute([$user_id, $ad_id]);
     $is_saved = $stmt->fetchColumn() > 0;
@@ -37,4 +38,3 @@ try {
 } catch (PDOException $e) {
     echo json_encode(['status' => 'error', 'message' => 'Database error']);
 }
-?>

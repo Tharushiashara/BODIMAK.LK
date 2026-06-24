@@ -167,7 +167,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') {
         }
     }
 </style>
-
+<!-- home_page-->
 <div class="hero">
     <div class="container">
         <h1>Find Your Perfect Boarding Place</h1>
@@ -187,6 +187,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') {
         </div>
     </div>
 </div>
+<!-- home_page why section-->
 
 <div class="container features-section">
     <h2>Why Choose BODIMAK.LK?</h2>
@@ -206,6 +207,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') {
     </div>
 </div>
 
+<!--Home page view All ads-->
 <div class="container" style="margin-bottom: 4rem;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
         <h2>Recently Added Boardings</h2>
@@ -220,13 +222,15 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') {
                     $imgPath = $ad['cover_image'] ? htmlspecialchars($ad['cover_image']) : 'https://via.placeholder.com/400x300?text=No+Image';
                     $isFavorite = in_array($ad['ad_id'], $savedAdIds);
                     ?>
+                    <!--favorite button-->
                     <button class="favorite-btn <?php echo $isFavorite ? 'active' : ''; ?>" data-id="<?php echo $ad['ad_id']; ?>" onclick="toggleFavorite(event, this)" title="Add to Favorites">
                         <svg viewBox="0 0 24 24">
                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                         </svg>
                     </button>
+                    <!--end favorite button-->
+                    <!--image details-->
                     <img src="<?php echo $imgPath; ?>" alt="<?php echo htmlspecialchars($ad['title']); ?>" class="listing-img">
-
                     <div class="listing-content">
                         <div class="listing-price">Rs. <?php echo number_format($ad['price'], 2); ?> / month</div>
                         <h3 class="listing-title"><?php echo htmlspecialchars($ad['title']); ?></h3>

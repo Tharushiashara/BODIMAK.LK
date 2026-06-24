@@ -1,6 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
+    //(Session ekak) aluthin armba kra nomathi nm armba krai.
 }
 ?>
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <a href="/BODIMAK.LK/search.php">Search</a>
                 <a href="/BODIMAK.LK/about.php">About</a>
                 <a href="/BODIMAK.LK/contact.php">Contact</a>
-
+                <!-- user (Role)  Dashboard change  -->
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <?php if ($_SESSION['role'] == 'admin'): ?>
                         <a href="/BODIMAK.LK/admin/dashboard.php">Dashboard</a>

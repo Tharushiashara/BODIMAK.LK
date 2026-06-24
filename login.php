@@ -3,7 +3,7 @@ session_start();
 require_once 'includes/db.php';
 
 $error = '';
-
+//email,password check krnwa
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
@@ -20,7 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['role'] = $user['role'];
                 $_SESSION['full_name'] = $user['full_name'];
+                //password_verify() arakshithawa password create
+                //Session userge ananyathawaya thyaganwa
 
+                // Role anuwa correct page ekata yanwa
                 if ($user['role'] == 'admin') {
                     header("Location: admin/dashboard.php");
                 } elseif ($user['role'] == 'seller') {
@@ -44,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container" style="max-width: 500px; margin: 4rem auto;">
     <div class="card">
         <h2 style="text-align: center; margin-bottom: 2rem;">Welcome Back</h2>
-        
-        <?php if($error): ?>
+
+        <?php if ($error): ?>
             <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
 
@@ -54,15 +57,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label class="form-label">Email Address</label>
                 <input type="email" name="email" class="form-control" required placeholder="Enter your email">
             </div>
-            
+
             <div class="form-group">
                 <label class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" required placeholder="Enter your password">
             </div>
-            
+
             <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Login</button>
         </form>
-        
+
         <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted);">
             Don't have an account? <a href="register.php">Register here</a>
         </p>
