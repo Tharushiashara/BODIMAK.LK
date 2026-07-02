@@ -80,6 +80,7 @@ $ads = $stmt->fetchAll();
                                 <td style="padding: 1rem; border-bottom: 1px solid var(--border-color); text-align: center;">
                                     <div style="display: flex; gap: 0.5rem; justify-content: center;">
                                         <a href="../listing.php?id=<?php echo $ad['ad_id']; ?>" target="_blank" class="btn btn-outline" style="padding: 0.25rem 0.5rem; font-size: 0.85rem;">View</a>
+                                        <a href="edit_ad.php?id=<?php echo $ad['ad_id']; ?>" class="btn btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.85rem; background-color: var(--secondary-color); border-color: var(--secondary-color);">Edit</a>
                                         <form method="POST" onsubmit="return confirm('Are you sure you want to delete this ad?');" style="display: inline;">
                                             <input type="hidden" name="delete_id" value="<?php echo $ad['ad_id']; ?>">
                                             <button type="submit" class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.85rem;">Delete</button>

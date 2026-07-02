@@ -50,9 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div style="flex: 3;">
         <div class="card">
             <h2>Welcome, <?php echo htmlspecialchars($user['full_name']); ?>!</h2>
+            <!--user dashboard nama wenas krnwa-->
             <p style="color: var(--text-muted); margin-bottom: 2rem;">Manage your profile information.</p>
 
-            <?php if($msg): ?>
+            <?php if ($msg): ?>
                 <div class="alert alert-success"><?php echo $msg; ?></div>
             <?php endif; ?>
 

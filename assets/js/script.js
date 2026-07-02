@@ -1,3 +1,66 @@
+// Custom Toast Notification System
+function showToast(message, type = 'info') {
+    let container = document.getElementById('toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    
+    let iconSvg = '';
+    if (type === 'success') {
+        iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
+    } else if (type === 'error') {
+        iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
+    } else if (type === 'warning') {
+        iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>`;
+    } else {
+        iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
+    }
+
+    toast.innerHTML = `
+        <div class="toast-content">
+            <span class="toast-icon">${iconSvg}</span>
+            <span class="toast-message">${message}</span>
+        </div>
+        <button class="toast-close" onclick="this.parentElement.classList.remove('show'); setTimeout(() => this.parentElement.remove(), 300);">&times;</button>
+    `;
+
+    container.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+
+    setTimeout(() => {
+        if (toast.parentNode) {
+            toast.classList.add('hide');
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 300);
+        }
+    }, 4000);
+}
+
+// Override default window.alert
+window.alert = function(message) {
+    let type = 'info';
+    const lowerMessage = message.toLowerCase();
+    if (lowerMessage.includes('error') || lowerMessage.includes('fail') || lowerMessage.includes('occurred')) {
+        type = 'error';
+    } else if (lowerMessage.includes('success') || lowerMessage.includes('thank') || lowerMessage.includes('saved')) {
+        type = 'success';
+    } else if (lowerMessage.includes('please') || lowerMessage.includes('login') || lowerMessage.includes('warn')) {
+        type = 'warning';
+    }
+    showToast(message, type);
+};
+
 //button click krama pasubime toggle_save.php wetha Request yawla 
 // labena parathicahara anuwa bottame penuma (red color) change
 document.addEventListener('DOMContentLoaded', function () {
@@ -81,15 +144,17 @@ function toggleFavorite(event, button) {
                     }
                 }
             } else if (data.message === 'unauthorized') {
-                alert('Please login to save favorites!');
-                window.location.href = '/BODIMAK.LK/login.php';
+                showToast('Please login to save favorites!', 'warning');
+                setTimeout(() => {
+                    window.location.href = '/BODIMAK.LK/login.php';
+                }, 1500);
             } else {
-                alert(data.message || 'An error occurred.');
+                showToast(data.message || 'An error occurred.', 'error');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('An error occurred. Please try again.');
+            showToast('An error occurred. Please try again.', 'error');
         });
 }
 

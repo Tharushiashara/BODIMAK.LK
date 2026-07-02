@@ -1,17 +1,20 @@
-<?php
-session_start(); //login details
-require_once 'includes/db.php';
+<?php //PHP code eka armba krana tag eka
+session_start(); // Session eka start karanawa. Login userge details session walin gannawa. 
+require_once 'includes/db.php'; // Database connection file eka include karanawa.
 
 // Fetch recent approved ads
-$stmt = $pdo->query("SELECT a.*, (SELECT image_path FROM ad_images WHERE ad_id = a.ad_id LIMIT 1) as cover_image FROM advertisements a WHERE status = 'approved' ORDER BY created_at DESC LIMIT 6");
-$recentAds = $stmt->fetchAll();
-
-// Fetch saved ads for currently logged in user (if any)
+$stmt = $pdo->query("SELECT a.*, (SELECT image_path FROM ad_images WHERE ad_id = a.ad_id LIMIT 1) as cover_image FROM advertisements a WHERE status = 'approved' ORDER BY created_at DESC LIMIT 3");
+//Database eke approve wu new ads 3 cover image  SQL query eka run krnwa.
+$recentAds = $stmt->fetchAll(); //Query eken labuna siyalu records array ekta ganwa.
 $savedAdIds = [];
-if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') {
+if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') //user login welad , role eka userkyla  check krnwa.
+{
     $stmt_saved = $pdo->prepare("SELECT ad_id FROM saved_listings WHERE user_id = ?");
+    //Login user savekrapu ads gana SQL query eka prepare krnwa
     $stmt_saved->execute([$_SESSION['user_id']]);
+    //Logged user ge user_id eka query ekata yodala execute krnwa
     $savedAdIds = $stmt_saved->fetchAll(PDO::FETCH_COLUMN);
+    //Save krapu  ad IDs withrak array ekata ganwa.
 }
 ?>
 
@@ -19,17 +22,20 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') {
 
 <style>
     .hero {
-        background: linear-gradient(135deg, rgba(67, 97, 238, 0.9), rgba(247, 37, 133, 0.9)), url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=2000') center/cover;
+        background: linear-gradient(135deg, rgba(67, 97, 238, 0.9), rgba(247, 37, 133, 0.9)), url('https://images.unsplash.com/photo-1570975640108-2292d83390ff?q=80&w=1022&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
         color: white;
         padding: 6rem 1rem;
         text-align: center;
         border-radius: 0 0 2rem 2rem;
+        /*Hero section eke corners round krnwa*/
         margin-bottom: 3rem;
+        /*Hero section ekata yatin space space ekak denwa*/
     }
 
     .hero h1 {
         font-size: 3.5rem;
         margin-bottom: 1rem;
+        /*Heading ekata yatin space ekak denwa*/
         color: white;
     }
 
@@ -38,24 +44,33 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') {
         max-width: 600px;
         margin: 0 auto 2rem;
         opacity: 0.9;
+        /*Text tikak transparent krnwa*/
     }
 
     .search-bar-container {
         background: white;
         padding: 1rem;
         border-radius: var(--border-radius);
+        /*Rounded corners.*/
         max-width: 800px;
         margin: 0 auto;
+        /*Search bar eka center krnwa*/
         box-shadow: var(--shadow-lg);
+        /*Shadow effect hadnwa*/
         display: flex;
+        /*Elements row  arrange */
         gap: 1rem;
     }
 
     .search-bar-container form {
         display: flex;
+        /*Input, Select, Button eka peliyaka penanwa*/
         width: 100%;
+        /*Entire width*/
         gap: 1rem;
+        /*Form elements athara gap.*/
     }
+
 
     .search-bar-container input,
     .search-bar-container select {
