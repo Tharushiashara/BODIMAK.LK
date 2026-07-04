@@ -3,7 +3,7 @@ session_start(); // Session eka start karanawa. Login userge details session wal
 require_once 'includes/db.php'; // Database connection file eka include karanawa.
 
 // Fetch recent approved ads
-$stmt = $pdo->query("SELECT a.*, (SELECT image_path FROM ad_images WHERE ad_id = a.ad_id LIMIT 1) as cover_image FROM advertisements a WHERE status = 'approved' ORDER BY created_at DESC LIMIT 3");
+$stmt = $pdo->query("SELECT a.*, (SELECT image_path FROM ad_images WHERE ad_id = a.ad_id LIMIT 1) as cover_image FROM advertisements a WHERE status = 'active' ORDER BY created_at DESC LIMIT 3");
 //Database eke approve wu new ads 3 cover image  SQL query eka run krnwa.
 $recentAds = $stmt->fetchAll(); //Query eken labuna siyalu records array ekta ganwa.
 $savedAdIds = [];
@@ -22,7 +22,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') //user login wel
 
 <style>
     .hero {
-        background: linear-gradient(135deg, rgba(67, 97, 238, 0.9), rgba(247, 37, 133, 0.9)), url('https://images.unsplash.com/photo-1570975640108-2292d83390ff?q=80&w=1022&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
+        background: linear-gradient(135deg, rgba(67, 97, 238, 0.9), rgba(247, 37, 133, 0.9)), url('https://images.unsplash.com/photo-1586810724476-c294fb7ac01b?q=80&w=436&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
         color: white;
         padding: 6rem 1rem;
         text-align: center;
@@ -48,7 +48,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') //user login wel
     }
 
     .search-bar-container {
-        background: white;
+        background: var(--white);
         padding: 1rem;
         border-radius: var(--border-radius);
         /*Rounded corners.*/
@@ -79,6 +79,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') //user login wel
         padding: 0.75rem;
         border-radius: 5px;
         font-family: inherit;
+        background-color: var(--white);
+        color: var(--text-dark);
     }
 
     .features-section {
@@ -95,7 +97,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') //user login wel
 
     .feature-card {
         padding: 2rem;
-        background: white;
+        background: var(--white);
         border-radius: var(--border-radius);
         box-shadow: var(--shadow-sm);
         transition: var(--transition);
@@ -114,7 +116,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') //user login wel
     }
 
     .listing-card {
-        background: white;
+        background: var(--white);
         border-radius: var(--border-radius);
         overflow: visible;
         box-shadow: var(--shadow-sm);

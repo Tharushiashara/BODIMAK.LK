@@ -15,7 +15,7 @@ $ad = $stmt->fetch();
 
 $can_view = false;
 if ($ad) {
-    if ($ad['status'] === 'approved') {
+    if ($ad['status'] === 'active') {
         $can_view = true;
     } elseif (isset($_SESSION['user_id'])) {
         if ($_SESSION['role'] === 'admin' || $_SESSION['user_id'] == $ad['seller_id']) {

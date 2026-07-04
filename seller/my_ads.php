@@ -50,7 +50,7 @@ $ads = $stmt->fetchAll();
         
         <?php if(count($ads) > 0): ?>
             <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; background: white; box-shadow: var(--shadow-sm); border-radius: var(--border-radius); overflow: hidden;">
+                <table style="width: 100%; border-collapse: collapse; background: var(--white); box-shadow: var(--shadow-sm); border-radius: var(--border-radius); overflow: hidden;">
                     <thead style="background-color: var(--background-light);">
                         <tr>
                             <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border-color);">Title</th>
@@ -70,17 +70,36 @@ $ads = $stmt->fetchAll();
                                 <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">Rs. <?php echo number_format($ad['price'], 2); ?></td>
                                 <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);"><?php echo date('Y-m-d', strtotime($ad['created_at'])); ?></td>
                                 <td style="padding: 1rem; border-bottom: 1px solid var(--border-color);">
-                                    <?php 
-                                    $statusColor = $ad['status'] == 'approved' ? 'var(--success)' : ($ad['status'] == 'rejected' ? 'var(--danger)' : 'var(--warning)');
+                                    <?php
+                                    if ($ad['status'] === 'active') {
+                                        $statusColor = 'var(--success)';
+                                        $statusLabel = '🟢 Live';
+                                    } elseif ($ad['status'] === 'approved') {
+                                        $statusColor = '#3b82f6';
+                                        $statusLabel = '💳 Pay to Publish';
+                                    } elseif ($ad['status'] === 'rejected') {
+                                        $statusColor = 'var(--danger)';
+                                        $statusLabel = 'Rejected';
+                                    } else {
+                                        $statusColor = 'var(--warning)';
+                                        $statusLabel = 'Under Review';
+                                    }
                                     ?>
-                                    <span style="background-color: <?php echo $statusColor; ?>; color: white; padding: 0.25rem 0.5rem; border-radius: 20px; font-size: 0.85rem; text-transform: capitalize;">
-                                        <?php echo htmlspecialchars($ad['status']); ?>
+                                    <span style="background-color: <?php echo $statusColor; ?>; color: white; padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.82rem; white-space: nowrap;">
+                                        <?php echo $statusLabel; ?>
                                     </span>
                                 </td>
                                 <td style="padding: 1rem; border-bottom: 1px solid var(--border-color); text-align: center;">
-                                    <div style="display: flex; gap: 0.5rem; justify-content: center;">
-                                        <a href="../listing.php?id=<?php echo $ad['ad_id']; ?>" target="_blank" class="btn btn-outline" style="padding: 0.25rem 0.5rem; font-size: 0.85rem;">View</a>
-                                        <a href="edit_ad.php?id=<?php echo $ad['ad_id']; ?>" class="btn btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.85rem; background-color: var(--secondary-color); border-color: var(--secondary-color);">Edit</a>
+                                    <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+                                        <?php if ($ad['status'] === 'approved'): ?>
+                                            <!-- Payment Required - prominent Pay Now button -->
+                                            <a href="checkout.php?ad_id=<?php echo $ad['ad_id']; ?>" class="btn btn-primary" style="padding: 0.35rem 0.75rem; font-size: 0.85rem; background: linear-gradient(135deg,#f72585,#7209b7); border: none; animation: pulse 2s infinite;">
+                                                💳 Pay Now
+                                            </a>
+                                        <?php else: ?>
+                                            <a href="../listing.php?id=<?php echo $ad['ad_id']; ?>" target="_blank" class="btn btn-outline" style="padding: 0.25rem 0.5rem; font-size: 0.85rem;">View</a>
+                                            <a href="edit_ad.php?id=<?php echo $ad['ad_id']; ?>" class="btn btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.85rem; background-color: var(--secondary-color); border-color: var(--secondary-color);">Edit</a>
+                                        <?php endif; ?>
                                         <form method="POST" onsubmit="return confirm('Are you sure you want to delete this ad?');" style="display: inline;">
                                             <input type="hidden" name="delete_id" value="<?php echo $ad['ad_id']; ?>">
                                             <button type="submit" class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.85rem;">Delete</button>

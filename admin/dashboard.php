@@ -26,6 +26,8 @@ $stats['ads_pending'] = $pdo->query("SELECT COUNT(*) FROM advertisements WHERE s
                 <li><a href="manage_users.php" style="display: block; padding: 0.5rem; color: var(--text-dark);">Manage Users</a></li>
                 <li><a href="manage_sellers.php" style="display: block; padding: 0.5rem; color: var(--text-dark);">Manage Sellers</a></li>
                 <li><a href="manage_ads.php" style="display: block; padding: 0.5rem; color: var(--text-dark);">Manage Advertisements</a></li>
+                <li><a href="commission_settings.php" style="display: block; padding: 0.5rem; color: var(--text-dark);">Commission Settings</a></li>
+                <li><a href="payment_reports.php" style="display: block; padding: 0.5rem; color: var(--text-dark);">Payment Reports</a></li>
                 <li><a href="../logout.php" style="display: block; padding: 0.5rem; color: var(--danger);">Logout</a></li>
             </ul>
         </div>

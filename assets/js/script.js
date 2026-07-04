@@ -64,6 +64,17 @@ window.alert = function(message) {
 //button click krama pasubime toggle_save.php wetha Request yawla 
 // labena parathicahara anuwa bottame penuma (red color) change
 document.addEventListener('DOMContentLoaded', function () {
+    // Theme toggle functionality
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+
     // Mobile menu toggle
     const mobileBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
@@ -76,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
             navLinks.style.top = '80px';
             navLinks.style.left = '0';
             navLinks.style.width = '100%';
-            navLinks.style.backgroundColor = '#fff';
+            navLinks.style.backgroundColor = 'var(--white)';
             navLinks.style.padding = '1rem';
             navLinks.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
             navLinks.style.zIndex = '99';

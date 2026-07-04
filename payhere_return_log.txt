@@ -1,0 +1,4 @@
+2026-07-04 16:36:06 | status_code='2' | order_id='AD-7-1783175751' | GET={"order_id":"AD-7-1783175751","status_code":"2","payhere_amount":"15000.00","payhere_currency":"LKR","sandbox_sim":"1"}
+2026-07-04 16:36:06 | hash_verified=NO | trust_status=YES
+2026-07-04 16:40:03 | status_code=NULL | order_id='AD-2-1783175912' | GET={"order_id":"AD-2-1783175912"}
+2026-07-04 17:19:22 | status_code=NULL | order_id='AD-2-1783178147' | GET={"order_id":"AD-2-1783178147"}

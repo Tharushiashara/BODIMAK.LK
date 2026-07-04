@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'seller') {
 require_once '../includes/db.php';
 
 // Fetch seller ads stats
-$stmt = $pdo->prepare("SELECT COUNT(*) as total, SUM(CASE WHEN status = 'approved' THEN 1 ELSE 0 END) as approved, SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending FROM advertisements WHERE seller_id = ?");
+$stmt = $pdo->prepare("SELECT COUNT(*) as total, SUM(CASE WHEN status = 'active' THEN 1 ELSE 0 END) as approved, SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending FROM advertisements WHERE seller_id = ?");
 $stmt->execute([$_SESSION['user_id']]);
 $stats = $stmt->fetch();
 ?>
