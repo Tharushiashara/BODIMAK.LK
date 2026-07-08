@@ -9,7 +9,7 @@ function showToast(message, type = 'info') {
 
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-    
+
     let iconSvg = '';
     if (type === 'success') {
         iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
@@ -30,7 +30,7 @@ function showToast(message, type = 'info') {
     `;
 
     container.appendChild(toast);
-    
+
     setTimeout(() => {
         toast.classList.add('show');
     }, 10);
@@ -48,7 +48,7 @@ function showToast(message, type = 'info') {
 }
 
 // Override default window.alert
-window.alert = function(message) {
+window.alert = function (message) {
     let type = 'info';
     const lowerMessage = message.toLowerCase();
     if (lowerMessage.includes('error') || lowerMessage.includes('fail') || lowerMessage.includes('occurred')) {
