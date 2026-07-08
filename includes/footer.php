@@ -15,16 +15,9 @@
                         <a href="/BODIMAK.LK/contact.php">Contact Support</a>
                     </div>
                 </div>
-                <!-- <div class="footer-col">
-                    <h3>Legal</h3>
-                    <div class="footer-links">
-                        <a href="#">Terms & Conditions</a>
-                        <a href="#">Privacy Policy</a>
-                    </div>
-                </div>-->
             </div>
             <div class="footer-bottom">
-                <p>&copy; <?php echo date('Y'); ?> BODIMAK.LK. Developed by L.G.T. Ashara. All rights reserved.</p>
+                <p><!--@/automatic update Date-->&copy;<?php echo date('Y'); ?> BODIMAK.LK. Developed by L.G.T. Ashara. All rights reserved.</p>
             </div>
         </div>
     </footer>

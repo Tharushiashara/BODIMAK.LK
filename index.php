@@ -17,7 +17,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') //user login wel
     //Save krapu  ad IDs withrak array ekata ganwa.
 }
 ?>
-
 <?php include 'includes/header.php'; ?>
 
 <style>

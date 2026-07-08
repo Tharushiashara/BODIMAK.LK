@@ -2,25 +2,24 @@
 
 // PayHere Configuration
 
-// --- PayHere Credentials ---
+//define constant hadnwa 
 define('PAYHERE_MERCHANT_ID', '1236659');
 define('PAYHERE_MERCHANT_SECRET', 'NDg0NDQ2MjEzMDg4Mjg2ODgyMjk5NTIyNTA0OTk4ODQyMzU3Mw==');
 
-// --- Environment: 'sandbox' or 'live' ---
-define('PAYHERE_ENV', 'sandbox');
+// Sandbox (Testing) , Live (Real Payments)thorana thana
 
-// --- PayHere Endpoint ---
+// PayHere payment page URL thiranaya krana kotasa
 define(
     'PAYHERE_CHECKOUT_URL',
     PAYHERE_ENV === 'sandbox'
-        ? 'https://sandbox.payhere.lk/pay/checkout'
-        : 'https://www.payhere.lk/pay/checkout'
+        ? 'https://sandbox.payhere.lk/pay/checkout' //Environment eka sandbox nam me URL use.Test payment page eka.
+        : 'https://www.payhere.lk/pay/checkout' //Sandbox newe nm Live payment page eka.
 );
 
-// --- Site Base URL (must match your domain) ---
+// --- Site Base URL (localhost URL) ---
 define('SITE_URL', 'http://localhost/BODIMAK.LK');
 
-// --- Helper: Generate PayHere hash ---
+// function
 function generatePayhereHash($merchant_id, $order_id, $amount, $currency, $merchant_secret)
 {
     return strtoupper(
@@ -34,7 +33,7 @@ function generatePayhereHash($merchant_id, $order_id, $amount, $currency, $merch
     );
 }
 
-// --- Helper: Verify PayHere notify hash ---
+//  Verify PayHere notify hash ---
 function verifyPayhereNotify($merchant_id, $order_id, $amount, $currency, $status_code, $md5sig, $merchant_secret)
 {
     $local_md5sig = strtoupper(

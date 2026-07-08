@@ -1,8 +1,6 @@
--- ============================================================
+
 -- BODIMAK.LK - PayHere Payment Gateway DB Migration
 -- Run this in phpMyAdmin or MySQL CLI
--- ============================================================
-
 USE bodimak_db;
 
 -- 1. Update advertisements status ENUM to include new statuses
