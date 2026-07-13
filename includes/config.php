@@ -7,6 +7,8 @@ define('PAYHERE_MERCHANT_ID', '1236659');
 define('PAYHERE_MERCHANT_SECRET', 'NDg0NDQ2MjEzMDg4Mjg2ODgyMjk5NTIyNTA0OTk4ODQyMzU3Mw==');
 
 // Sandbox (Testing) , Live (Real Payments)thorana thana
+define('PAYHERE_ENV', 'sandbox'); // sandbox / live
+
 
 // PayHere payment page URL thiranaya krana kotasa
 define(
