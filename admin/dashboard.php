@@ -6,7 +6,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 }
 require_once '../includes/db.php';
 
-// Fetch stats
+// Fetch=krna   count gana
 $stats = [];
 $stats['users'] = $pdo->query("SELECT COUNT(*) FROM users WHERE role = 'user'")->fetchColumn();
 $stats['sellers'] = $pdo->query("SELECT COUNT(*) FROM users WHERE role = 'seller'")->fetchColumn();
@@ -36,7 +36,7 @@ $stats['ads_pending'] = $pdo->query("SELECT COUNT(*) FROM advertisements WHERE s
     <!-- Main Content -->
     <div style="flex: 3;">
         <h2 style="margin-bottom: 1.5rem;">Admin Dashboard</h2>
-        
+
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
             <div class="card" style="text-align: center; border-bottom: 4px solid var(--primary-color);">
                 <h3 style="font-size: 2.5rem; color: var(--text-dark);"><?php echo $stats['users']; ?></h3>

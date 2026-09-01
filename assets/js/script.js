@@ -4,7 +4,7 @@ function showToast(message, type = 'info') {
     if (!container) {
         container = document.createElement('div');
         container.id = 'toast-container';
-        document.body.appendChild(container);
+        document.body.appendChild(container);//error ekak yatin ekak enwa nan meke thamai balanna wenne
     }
 
     const toast = document.createElement('div');
@@ -155,7 +155,7 @@ function toggleFavorite(event, button) {
                     }
                 }
             } else if (data.message === 'unauthorized') {
-                showToast('Please login to save favorites!', 'warning');
+                showToast('Please login to save favorites!', 'warning');//error message save listing dapu kenata login nathi nam
                 setTimeout(() => {
                     window.location.href = '/BODIMAK.LK/login.php';
                 }, 1500);

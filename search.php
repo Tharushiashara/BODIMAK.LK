@@ -47,7 +47,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') {
 
 <div class="container" style="margin-top: 2rem;">
     <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
-        
+
         <!-- Sidebar Filters -->
         <div style="flex: 1; min-width: 250px; max-width: 300px;">
             <div class="card" style="position: sticky; top: 100px;">
@@ -55,7 +55,11 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') {
                 <form action="search.php" method="GET">
                     <div class="form-group">
                         <label class="form-label">Location</label>
-                        <input type="text" name="location" class="form-control" value="<?php echo htmlspecialchars($location); ?>" placeholder="e.g. Colombo">
+                        <input type="text" name="location" class="form-control" value="<?php echo htmlspecialchars($location); ?>" placeholder="e.g. District">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" name="location" class="form-control" value="<?php echo htmlspecialchars($location); ?>" placeholder="e.g. City">
                     </div>
                     <div class="form-group">
                         <label class="form-label">Room Type</label>
@@ -79,22 +83,22 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] == 'user') {
                 </form>
             </div>
         </div>
-        
+
         <!-- Results -->
         <div style="flex: 3;">
             <h2 style="margin-bottom: 1.5rem;">Search Results (<?php echo count($results); ?>)</h2>
-            
-            <?php if(count($results) > 0): ?>
+
+            <?php if (count($results) > 0): ?>
                 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
-                    <?php foreach($results as $ad): ?>
+                    <?php foreach ($results as $ad): ?>
                         <div class="card" style="padding: 0; overflow: visible; margin-bottom: 0; position: relative;">
-                            <?php 
+                            <?php
                             $imgPath = $ad['cover_image'] ? htmlspecialchars($ad['cover_image']) : 'https://via.placeholder.com/400x300?text=No+Image';
                             $isFavorite = in_array($ad['ad_id'], $savedAdIds);
                             ?>
                             <button class="favorite-btn <?php echo $isFavorite ? 'active' : ''; ?>" data-id="<?php echo $ad['ad_id']; ?>" onclick="toggleFavorite(event, this)" title="Add to Favorites">
                                 <svg viewBox="0 0 24 24">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                 </svg>
                             </button>
                             <img src="<?php echo $imgPath; ?>" alt="<?php echo htmlspecialchars($ad['title']); ?>" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--border-radius) var(--border-radius) 0 0;">
